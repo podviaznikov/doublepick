@@ -6,14 +6,16 @@
 #cards_container
 {
     display:-webkit-box;
+    display:box;
     -webkit-box-orient:horisontal;
+    box-orient:horisontal;
 }
 .column
 {
     -webkit-box-flex:1;
+    box-flex:1;
     width:25%;
 }
-
 .card
 {
     position:relative;
@@ -21,9 +23,9 @@
 	width:140px;
 	height:140px;
 	-webkit-perspective:500;
+    perspective:500;
 }
-.card .front,
-.card .back
+.card .front,.card .back
 {
 	position:absolute;
 	top:0;
@@ -34,7 +36,9 @@
 	/* important: transitions needed for flip effect! */
 	-webkit-transition: all .5s ease-in-out;
     -webkit-transform-style:preserve-3d;
+    transform-style:preserve-3d;
 	-webkit-backface-visibility:hidden;
+    backface-visibility:hidden;
 }
 .card .front
 {
@@ -45,14 +49,17 @@
 {
 	z-index:800;
 	-webkit-transform:rotateY(-180deg);
+    transform:rotateY(-180deg);
 }
 .card.active .front
 {
 	z-index:900;
 	-webkit-transform:rotateY(180deg);
+    transform:rotateY(180deg);
 }
 .card.active .back
 {
 	z-index: 1000;
 	-webkit-transform:rotateY(0deg);
+    transform:rotateY(0deg);
 }

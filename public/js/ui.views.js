@@ -1,6 +1,7 @@
-"use strict";
+/*global Backbone: true, $: true, _: true, AppController: true, models:true */
 var ui={};
 $(function(){
+    "use strict";
     ui.CardView=Backbone.View.extend({
         className:'card',
         tpl:$('#card_tpl').html(),
@@ -13,8 +14,8 @@ $(function(){
         },
         render:function(){
             this.$(this.el).html(_.template(this.tpl,{
-                cardId:'1',
-                image:'picker/bleach_chlorine.png'
+                cardId:this.model.get('cardId'),
+                image:this.model.get('img')
             }));
             return this;
         },
@@ -33,12 +34,22 @@ $(function(){
         secondColumn:$('#second_column'),
         thirdColumn:$('#thord_column'),
         fourthColumn:$('#fourth_column'),
+        initialize:function(){
+            _.bindAll(this,'render','addCard','addCards');
+            this.cards=new models.Cards();
+            this.cards.bind('add',this.addCard);
+            this.cards.bind('refresh',this.addCards);
+            this.cards.fetch();
+        },
         render:function(){
-            this.$(this.firstColumn).append(new ui.CardView().render().el);
-            this.$(this.firstColumn).append(new ui.CardView().render().el);
-            this.$(this.secondColumn).append(new ui.CardView().render().el);
             return this;
         },
+        addCard:function(card){
+            this.$(this.firstColumn).append(new ui.CardView({model:card}).render().el);    
+        },
+        addCards:function(){
+            this.cards.each(this.addCard);
+        }
     });
     ui.StatisticView=Backbone.View.extend({
         el:$('#statistic_view'),

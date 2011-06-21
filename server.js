@@ -23,5 +23,18 @@ app.get('/test',function(req,res){
     res.write('Hello');
     res.end();
 });
+
+app.get('/cards',function(req,res){
+    var cards=[{
+           cardId:1,
+           img:'picker/bleach_any.png'
+        },
+        {
+           cardId:2,
+           img:'picker/bleach_oxygen.png'
+        }];
+    res.write(JSON.stringify(cards));
+    res.end();
+});
 app.listen(process.env.C9_PORT);
 util.log('started app');
