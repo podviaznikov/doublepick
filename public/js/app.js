@@ -6,12 +6,28 @@ var AppController={
         //init views
         this.cardsView=new ui.CardsView();
         this.statisticView=new ui.StatisticView();
+        this.cardsIds=[];
+        for(var i=0;i<42;i++){
+            this.cardsIds[i]=i;
+        }
     }
 };
 models.Card=Backbone.Model.extend({});
 models.Cards=Backbone.Collection.extend({
     model:models.Card,
-    url:'/cards'
+    url:'/cards',
+    generateGameCards:function(){
+        var shuffledIds=_.shuffle(AppController.cardsIds),
+            tasks=[],
+            i=0;
+        for(;i<6;i++){
+            tasks[i]={
+                cardId:shuffledIds[i],
+                img:'tasks/'+shuffledIds[i]+'.png'
+            };
+        }
+        return tasks;
+    }
 });
 //extending libs
 _.mixin({
