@@ -35,11 +35,11 @@ app.get('/cards',function(req,res){
         },
         {
            cardId:3,
-           img:'picker/bleach_clorine.png'
+           img:'picker/bleach_chlorine.png'
         },
         {
            cardId:4,
-           img:'picker/clearing_HCS.png'
+           img:'picker/cleaning_HCS.png'
         }];
     res.write(JSON.stringify(cards));
     res.end();
