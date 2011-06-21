@@ -3,9 +3,7 @@
 var models={};
 var AppController={
     init:function(){
-        this.taskAttemptsCounter=0;
         this.cardsView=new ui.CardsView();
-        this.cardsView.render();
         this.statisticView=new ui.StatisticView();
     }
 };

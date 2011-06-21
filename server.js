@@ -32,6 +32,14 @@ app.get('/cards',function(req,res){
         {
            cardId:2,
            img:'picker/bleach_oxygen.png'
+        },
+        {
+           cardId:3,
+           img:'picker/bleach_clorine.png'
+        },
+        {
+           cardId:4,
+           img:'picker/clearing_HCS.png'
         }];
     res.write(JSON.stringify(cards));
     res.end();

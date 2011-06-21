@@ -21,8 +21,7 @@ $(function(){
         },
         clickOnCard:function(){
             this.$(this.el).addClass('active');
-            AppController.taskAttemptsCounter++;
-            AppController.statisticView.update(AppController.taskAttemptsCounter);
+            AppController.statisticView.trigger('updateCounter');
         },
         leaveCard:function(){
             this.$(this.el).removeClass('active');
@@ -32,7 +31,7 @@ $(function(){
         el:$('#cards_container'),
         firstColumn:$('#first_column'),
         secondColumn:$('#second_column'),
-        thirdColumn:$('#thord_column'),
+        thirdColumn:$('#third_column'),
         fourthColumn:$('#fourth_column'),
         initialize:function(){
             _.bindAll(this,'render','addCard','addCards');
@@ -53,11 +52,17 @@ $(function(){
     });
     ui.StatisticView=Backbone.View.extend({
         el:$('#statistic_view'),
+        initialize:function(){
+            this.taskAttemptsCounter=0;
+            _.bind(this,'render','updateCounter');
+            this.bind('updateCounter',this.updateCounter);
+        },
         render:function(){
             return this;
         },
-        update:function(v){
-            this.$(this.el).html(v);
+        updateCounter:function(){
+            this.taskAttemptsCounter++;
+            this.$(this.el).html(this.taskAttemptsCounter);
         }
     });
 
