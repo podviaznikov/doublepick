@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Picker</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Enginimation Studio (enginimation.com)" />
+    <link rel="stylesheet" href="css/picker.css"/>
+    <script src="js/libs.bundle.js"></script>
+    <script src="js/ui.views.js"></script>
+    <script src="js/app.js"></script>
+    <script>$(function(){AppController.init();});</script>
+</head>
+<body>
+<article id="cards_container">
+    <section id="first_column" class="column"></section>
+    <section id="second_column" class="column"></section>
+    <section id="third_column" class="column"></section>
+    <section id="fourth_column" class="column"></section>
+</article>
+<aside id="statistic_view"></aside>
+<script type="html/template" id="card_tpl">
+<section class="card" data-card-id="<%= cardId %>">
+     <div class="front">Click me</div>
+     <div class="back"><img src="<%= image %>"></div>
+ </section>
+</script>
+</body>
+</html>
