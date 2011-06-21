@@ -44,7 +44,7 @@ $(function(){
             return this;
         },
         addCard:function(card){
-            this.$(this.firstColumn).append(new ui.CardView({model:card}).render().el);    
+            this.$(this.firstColumn).append(new ui.CardView({model:card}).render().el);
         },
         addCards:function(){
             this.cards.each(this.addCard);
