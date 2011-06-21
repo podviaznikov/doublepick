@@ -1,7 +1,7 @@
-var util = require('util'),
-    express = require('express'),
-    connect = require('connect'),
-    app = express.createServer();
+var util=require('util'),
+    express=require('express'),
+    connect=require('connect'),
+    app=express.createServer();
 
 //configuration
 app.configure(function(){
