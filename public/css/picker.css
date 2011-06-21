@@ -3,6 +3,10 @@
     -webkit-user-select:none;
     user-select:none;
 }
+body
+{
+    background:#f0f0eb;
+}
 #cards_container
 {
     display:-webkit-box;
@@ -24,12 +28,11 @@
 	height:140px;
 	-webkit-perspective:500;
     perspective:500;
+    border:15px solid #fff;
 }
 .card .front,.card .back
 {
 	position:absolute;
-	top:0;
-	left:0;
 	width:100%;
 	height:100%;
 	text-align:center;
@@ -42,24 +45,50 @@
 }
 .card .front
 {
-	z-index:900;
-	background:#fee;
+	z-index:9;
+    background:white;
+    font-size:70px;
+    text-shadow:5px 1px 1px grey;
 }
 .card .back
 {
-	z-index:800;
+	z-index:8;
 	-webkit-transform:rotateY(-180deg);
     transform:rotateY(-180deg);
 }
-.card.active .front, .card.finished .front
+.active .front, .finished .front
 {
-	z-index:900;
+	z-index:9;
 	-webkit-transform:rotateY(180deg);
     transform:rotateY(180deg);
 }
-.card.active .back, .card.finished .back
+.active .back, .finished .back
 {
-	z-index: 1000;
+	z-index:10;
 	-webkit-transform:rotateY(0deg);
     transform:rotateY(0deg);
+}
+@-webkit-keyframes cardDoneAnimation 
+{
+       0% { opacity:1; -webkit-transform:scale(1);}
+      12% { opacity:1; -webkit-transform:scale(1.03); }
+      25% { opacity:1; -webkit-transform:scale(1.06); }
+      37% { opacity:1; -webkit-transform:scale(1.30); }
+     100% { opacity:1; -webkit-transform:scale(1);} 
+}
+.finished .back
+{
+    -webkit-animation:cardDoneAnimation 1s linear 2;
+    -webkit-animation-delay:1s;
+}
+
+#statistic_view
+{
+    position:fixed;
+    top:30px;
+    right:30px;
+}
+header h1
+{
+    font-size:16px;
 }

@@ -4,6 +4,7 @@ $(function(){
     "use strict";
     ui.CardView=Backbone.View.extend({
         className:'card',
+        tagName:'section',
         tpl:$('#card_tpl').html(),
         events:{
             'click':'clickOnCard',
@@ -14,9 +15,9 @@ $(function(){
         },
         render:function(){
             this.$(this.el).html(_.template(this.tpl,{
-                cardId:this.model.get('cardId'),
                 image:this.model.get('img')
             }));
+            this.$(this.el).attr('data-card-id',this.model.get('cardId'));
             return this;
         },
         clickOnCard:function(){
@@ -88,6 +89,7 @@ $(function(){
     //statistics view. Shows number of made attempt
     ui.StatisticView=Backbone.View.extend({
         el:$('#statistic_view'),
+        counterEl:$('#statistic_view section'),
         initialize:function(){
             this.taskAttemptsCounter=0;
             _.bind(this,'render','updateCounter');
@@ -98,7 +100,7 @@ $(function(){
         },
         updateCounter:function(){
             this.taskAttemptsCounter++;
-            this.$(this.el).html(this.taskAttemptsCounter);
+            this.$(this.counterEl).html(this.taskAttemptsCounter);
         }
     });
 });
