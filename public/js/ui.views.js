@@ -1,5 +1,18 @@
 /*global Backbone: true, $: true, _: true, AppController: true, models:true */
 var ui={};
+// The shuffle function
+var shuffle = function(array) {
+    var tmp, current, top = array.length;
+
+    if(top) while(--top){
+        current = Math.floor(Math.random() * (top + 1));
+        tmp = array[current];
+        array[current] = array[top];
+        array[top] = tmp;
+    }
+
+    return array;
+};
 $(function(){
     "use strict";
     ui.CardView=Backbone.View.extend({
@@ -43,11 +56,27 @@ $(function(){
         render:function(){
             return this;
         },
-        addCard:function(card){
-            this.$(this.firstColumn).append(new ui.CardView({model:card}).render().el);
+        addCard:function(card,index){
+            var html=new ui.CardView({model:card}).render().el;
+            if(index>=0 && index<3){
+                this.$(this.firstColumn).append(html);
+            }
+            else if(index>=3 && index<6){
+                this.$(this.secondColumn).append(html);
+            }
+            else if(index>=6 && index<9){
+                this.$(this.thirdColumn).append(html);
+            }
+            else{
+                this.$(this.fourthColumn).append(html);
+            }
         },
         addCards:function(){
-            this.cards.each(this.addCard);
+            //this.cards.each(this.addCard);
+            var cards=this.cards.models,
+                doubledCards=cards.concat(cards),
+                shuffledCards=shuffle(doubledCards);
+            _.each(shuffledCards,this.addCard);    
         }
     });
     ui.StatisticView=Backbone.View.extend({

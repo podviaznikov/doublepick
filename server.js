@@ -40,6 +40,14 @@ app.get('/cards',function(req,res){
         {
            cardId:4,
            img:'picker/cleaning_HCS.png'
+        },
+        {
+           cardId:5,
+           img:'picker/cleaning_HCS_very-delicate.png'
+        },
+        {
+           cardId:6,
+           img:'picker/cleaning_HCS_delicate.png'
         }];
     res.write(JSON.stringify(cards));
     res.end();
