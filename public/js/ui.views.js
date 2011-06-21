@@ -1,18 +1,5 @@
 /*global Backbone: true, $: true, _: true, AppController: true, models:true */
 var ui={};
-// The shuffle function
-var shuffle = function(array) {
-    var tmp, current, top = array.length;
-
-    if(top) while(--top){
-        current = Math.floor(Math.random() * (top + 1));
-        tmp = array[current];
-        array[current] = array[top];
-        array[top] = tmp;
-    }
-
-    return array;
-};
 $(function(){
     "use strict";
     ui.CardView=Backbone.View.extend({
@@ -34,7 +21,7 @@ $(function(){
         },
         clickOnCard:function(){
             this.$(this.el).addClass('active');
-            AppController.statisticView.trigger('updateCounter');
+            AppController.cardsView.trigger('card:selected',this.model);
         },
         leaveCard:function(){
             this.$(this.el).removeClass('active');
@@ -47,17 +34,21 @@ $(function(){
         thirdColumn:$('#third_column'),
         fourthColumn:$('#fourth_column'),
         initialize:function(){
-            _.bindAll(this,'render','addCard','addCards');
+            _.bindAll(this,'render','addCard','addCards','handleCardSelection');
+            this.bind('card:selected',this.handleCardSelection);
+            this.previosCard=null;
             this.cards=new models.Cards();
-            this.cards.bind('add',this.addCard);
             this.cards.bind('refresh',this.addCards);
+            //retrieve cards immediately to start game
             this.cards.fetch();
         },
         render:function(){
             return this;
         },
         addCard:function(card,index){
-            var html=new ui.CardView({model:card}).render().el;
+            card.set({countId:index});
+            var view=new ui.CardView({model:card}),
+                html=view.render().el;
             if(index>=0 && index<3){
                 this.$(this.firstColumn).append(html);
             }
@@ -72,19 +63,35 @@ $(function(){
             }
         },
         addCards:function(){
-            //this.cards.each(this.addCard);
-            var cards=this.cards.models,
-                doubledCards=cards.concat(cards),
-                shuffledCards=shuffle(doubledCards);
+            var cards=this.cards.toArray(),
+                //copy array of cards to new array
+                doubledCards=cards;
+             //clone each model from initial array and put into doubled cards array   
+            _.each(cards,function(card){
+                doubledCards.push(card.clone()); 
+            });
+            //shuffle cards
+            var shuffledCards=_.shuffle(doubledCards);
             _.each(shuffledCards,this.addCard);    
+        },
+        handleCardSelection:function(card){
+            AppController.statisticView.trigger('counter:update');
+            if(this.previosCard){
+                if(card.get('cardId')===this.previosCard.get('cardId') && 
+                card.get('countId')!==this.previosCard.get('countId')){
+                    this.$(".card[data-card-id='"+card.get('cardId')+"']").addClass('finished');
+                }
+            }
+            this.previosCard=card;
         }
     });
+    //statistics view. Shows number of made attempt
     ui.StatisticView=Backbone.View.extend({
         el:$('#statistic_view'),
         initialize:function(){
             this.taskAttemptsCounter=0;
             _.bind(this,'render','updateCounter');
-            this.bind('updateCounter',this.updateCounter);
+            this.bind('counter:update',this.updateCounter);
         },
         render:function(){
             return this;
@@ -94,5 +101,4 @@ $(function(){
             this.$(this.el).html(this.taskAttemptsCounter);
         }
     });
-
 });

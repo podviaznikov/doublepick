@@ -51,13 +51,13 @@
 	-webkit-transform:rotateY(-180deg);
     transform:rotateY(-180deg);
 }
-.card.active .front
+.card.active .front, .card.finished .front
 {
 	z-index:900;
 	-webkit-transform:rotateY(180deg);
     transform:rotateY(180deg);
 }
-.card.active .back
+.card.active .back, .card.finished .back
 {
 	z-index: 1000;
 	-webkit-transform:rotateY(0deg);
