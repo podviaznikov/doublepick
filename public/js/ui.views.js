@@ -39,9 +39,10 @@ $(function(){
             this.bind('card:selected',this.handleCardSelection);
             this.previosCard=null;
             this.cards=new models.Cards();
-            this.cards.bind('refresh',this.addCards);
+            //this.cards.bind('refresh',this.addCards);
             //retrieve cards immediately to start game
-            this.cards.fetch();
+            //this.cards.fetch();
+            this.addCards();
         },
         render:function(){
             return this;
@@ -64,7 +65,7 @@ $(function(){
             }
         },
         addCards:function(){
-            var cards=this.cards.toArray(),
+            var cards=this.cards.generateGameCards(),
                 //copy array of cards to new array
                 doubledCards=cards;
              //clone each model from initial array and put into doubled cards array   

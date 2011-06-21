@@ -7,6 +7,10 @@ body
 {
     background:#f0f0eb;
 }
+img
+{
+    width:100%;    
+}
 #cards_container
 {
     display:-webkit-box;
@@ -91,4 +95,46 @@ body
 header h1
 {
     font-size:16px;
+}
+.button
+{
+    border: 1px solid #6FA856;
+    background: #92BB46;
+    background: -moz-linear-gradient(0% 100% 90deg, #749F38, #B0D853);
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#B0D853), to(#749F38));
+    box-shadow: 0 1px 0px #ffffff;
+    -moz-box-shadow: 0 1px 0px #ffffff;
+    -webkit-box-shadow: 0 1px 0px #ffffff;
+    -box-shadow: inset 0 1px 0px #d8eca9;
+    -webkit-box-shadow: inset 0 1px 0px #d8eca9;
+    -moz-box-shadow: inset 0 1px 0px #d8eca9;
+    color: white;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 13px;
+    font-weight: bold;
+    text-shadow: 0 -1px 0px #647D31;
+    height: 32px;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    cursor:pointer;
+}
+.button:hover 
+{
+    border-top-color: #b6cc8b;
+    background: #509613;
+    background: -moz-linear-gradient(0% 100% 90deg, #318403, #83b322);
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#83b322), to(#318403));
+}
+
+.button:active 
+{
+    border-top-color: #0e2901;
+    box-shadow: inset 0 2px 6px #0e2901;
+    -moz-box-shadow: inset 0 2px 6px #0e2901;
+    -webkit-box-shadow: inset 0 2px 6px #0e2901;
+    background: #3b6e10;
+    background: -moz-linear-gradient(0% 100% 90deg, #318403, #83b322);
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#83b322), to(#318403));
 }

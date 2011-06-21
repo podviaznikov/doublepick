@@ -3,30 +3,29 @@
 var models={};
 var AppController={
     init:function(){
-        //init views
-        this.cardsView=new ui.CardsView();
-        this.statisticView=new ui.StatisticView();
         this.cardsIds=[];
         for(var i=0;i<42;i++){
             this.cardsIds[i]=i;
         }
+        //init views
+        this.cardsView=new ui.CardsView();
+        this.statisticView=new ui.StatisticView();
     }
 };
 models.Card=Backbone.Model.extend({});
 models.Cards=Backbone.Collection.extend({
     model:models.Card,
-    url:'/cards',
     generateGameCards:function(){
         var shuffledIds=_.shuffle(AppController.cardsIds),
-            tasks=[],
+            cards=[],
             i=0;
         for(;i<6;i++){
-            tasks[i]={
+            cards[i]=new models.Card({
                 cardId:shuffledIds[i],
-                img:'tasks/'+shuffledIds[i]+'.png'
-            };
+                img:'cards/'+shuffledIds[i]+'.png'
+            });
         }
-        return tasks;
+        return cards;
     }
 });
 //extending libs
