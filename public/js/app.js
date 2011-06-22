@@ -4,7 +4,7 @@ var models={};
 var AppController={
     init:function(){
         this.cardsIds=[];
-        for(var i=0;i<42;i++){
+        for(var i=1;i<=42;i++){
             this.cardsIds[i]=i;
         }
         //init views
