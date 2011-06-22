@@ -39,20 +39,20 @@ img
 	height:100%;
 	text-align:center;
 	/* important: transitions needed for flip effect! */
-	-webkit-transition: all .3s ease-in-out;
+	-webkit-transition: all .7s ease-in-out;
     -webkit-transform-style:preserve-3d;
     transform-style:preserve-3d;
 	-webkit-backface-visibility:hidden;
     backface-visibility:hidden;
 }
-.card .front
+:not(.active) .front
 {
 	z-index:9;
     background:white;
-    font-size:70px;
-    text-shadow:5px 1px 1px grey;
+    font-size:120px;
+    text-shadow:2px 1px 1px grey;
 }
-.card .back
+:not(.active) .back
 {
 	z-index:8;
 	-webkit-transform:rotateY(-180deg);
@@ -81,8 +81,14 @@ img
 .finished .back
 {
     -webkit-animation:cardDoneAnimation 1s linear 2;
-    -webkit-animation-delay:1s;
+    -webkit-animation-delay:0.5s;
 }
+.all_finished .back
+{
+    -webkit-animation:cardDoneAnimation 1s linear 2;
+    -webkit-animation-delay:0.5s;
+}
+
 
 #statistic_view
 {

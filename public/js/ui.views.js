@@ -8,7 +8,7 @@ $(function(){
         tpl:$('#card_tpl').html(),
         events:{
             'click':'clickOnCard',
-            'mouseout':'leaveCard'
+            'mouseleave':'leaveCard'
         },
         initialize:function(){
             _.bindAll(this,'clickOnCard','leaveCard');
@@ -37,6 +37,7 @@ $(function(){
         initialize:function(){
             _.bindAll(this,'render','addCard','newCards','removeCards',
                 'handleCardSelection');
+            this.correctAnswersCounter=0;    
             this.bind('card:selected',this.handleCardSelection);
             this.bind('cards:clear',this.removeCards);
             this.bind('cards:new',this.newCards);
@@ -85,6 +86,10 @@ $(function(){
                 if(card.get('cardId')===this.previosCard.get('cardId') && 
                 card.get('countId')!==this.previosCard.get('countId')){
                     this.$(".card[data-card-id='"+card.get('cardId')+"']").addClass('finished');
+                    this.correctAnswersCounter++;
+                    if(this.correctAnswersCounter===6){
+                        this.$('.card').addClass('all_finished');
+                    }
                 }
             }
             this.previosCard=card;
