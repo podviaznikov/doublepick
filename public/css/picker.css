@@ -7,7 +7,12 @@ body
 {
     background:#f0f0eb;
 }
-img
+footer
+{
+    text-align: center;
+    margin-top:30px;
+}
+.card img
 {
     width:100%;    
 }
@@ -31,6 +36,7 @@ img
 	width:140px;
 	height:140px;
     border:15px solid #fff;
+    cursor:pointer;
 }
 .card .front,.card .back
 {
@@ -78,6 +84,14 @@ img
       37% { opacity:1; -webkit-transform:scale(1.30); }
      100% { opacity:1; -webkit-transform:scale(1);} 
 }
+@-webkit-keyframes cardsDoneAnimation 
+{
+       0% { opacity:1; -webkit-transform:scale(1);}
+      12% { opacity:1; -webkit-transform:scale(1.03); }
+      25% { opacity:1; -webkit-transform:scale(1.06); }
+      37% { opacity:1; -webkit-transform:scale(1.30); }
+     100% { opacity:1; -webkit-transform:scale(1);} 
+}
 .finished .back
 {
     -webkit-animation:cardDoneAnimation 1s linear 2;
@@ -85,10 +99,9 @@ img
 }
 .all_finished .back
 {
-    -webkit-animation:cardDoneAnimation 1s linear 2;
+    -webkit-animation:cardsDoneAnimation 1s linear 2;
     -webkit-animation-delay:0.5s;
 }
-
 
 #statistic_view
 {
@@ -101,7 +114,7 @@ header h1
 {
     font-size:16px;
 }
-footer
+section#toolbar
 {
     position:fixed;
     bottom:30px;

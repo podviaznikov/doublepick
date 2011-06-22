@@ -37,7 +37,7 @@ $(function(){
         initialize:function(){
             _.bindAll(this,'render','addCard','newCards','removeCards',
                 'handleCardSelection');
-            this.correctAnswersCounter=0;    
+            this.correctAnswersCounter=0;
             this.bind('card:selected',this.handleCardSelection);
             this.bind('cards:clear',this.removeCards);
             this.bind('cards:new',this.newCards);
@@ -67,6 +67,8 @@ $(function(){
             }
         },
         newCards:function(){
+            //reset correct answers counter
+            this.correctAnswersCounter=0;
             //generate 6 unique cards
             var cards=this.cards.generateGameCards(),
                 //copy array of cards to new array
@@ -88,7 +90,10 @@ $(function(){
                     this.$(".card[data-card-id='"+card.get('cardId')+"']").addClass('finished');
                     this.correctAnswersCounter++;
                     if(this.correctAnswersCounter===6){
+                        //add class all_finished for each card. Class will trigger animation
                         this.$('.card').addClass('all_finished');
+                        //reset correct answer counter(maybe not necessary to reset it in this place)
+                        this.correctAnswersCounter=0;
                     }
                 }
             }
