@@ -10,6 +10,7 @@ var AppController={
         //init views
         this.cardsView=new ui.CardsView();
         this.statisticView=new ui.StatisticView();
+        this.toolbarView=new ui.ToolbarView();
     }
 };
 models.Card=Backbone.Model.extend({});

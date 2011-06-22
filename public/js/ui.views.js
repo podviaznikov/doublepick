@@ -35,14 +35,15 @@ $(function(){
         thirdColumn:$('#third_column'),
         fourthColumn:$('#fourth_column'),
         initialize:function(){
-            _.bindAll(this,'render','addCard','addCards','handleCardSelection');
+            _.bindAll(this,'render','addCard','newCards','removeCards',
+                'handleCardSelection');
             this.bind('card:selected',this.handleCardSelection);
+            this.bind('cards:clear',this.removeCards);
+            this.bind('cards:new',this.newCards);
             this.previosCard=null;
             this.cards=new models.Cards();
-            //this.cards.bind('refresh',this.addCards);
             //retrieve cards immediately to start game
-            //this.cards.fetch();
-            this.addCards();
+            this.newCards();
         },
         render:function(){
             return this;
@@ -64,7 +65,8 @@ $(function(){
                 this.$(this.fourthColumn).append(html);
             }
         },
-        addCards:function(){
+        newCards:function(){
+            //generate 6 unique cards
             var cards=this.cards.generateGameCards(),
                 //copy array of cards to new array
                 doubledCards=cards;
@@ -77,6 +79,7 @@ $(function(){
             _.each(shuffledCards,this.addCard);    
         },
         handleCardSelection:function(card){
+            //trigger statistic update
             AppController.statisticView.trigger('counter:update');
             if(this.previosCard){
                 if(card.get('cardId')===this.previosCard.get('cardId') && 
@@ -85,6 +88,9 @@ $(function(){
                 }
             }
             this.previosCard=card;
+        },
+        removeCards:function(){
+            this.$('.card').remove();
         }
     });
     //statistics view. Shows number of made attempt
@@ -93,15 +99,33 @@ $(function(){
         counterEl:$('#statistic_view section'),
         initialize:function(){
             this.taskAttemptsCounter=0;
-            _.bind(this,'render','updateCounter');
+            _.bind(this,'resetCounter','updateCounter');
             this.bind('counter:update',this.updateCounter);
+            this.bind('counter:reset',this.resetCounter);
         },
-        render:function(){
-            return this;
-        },
+        //increment counter on 1
         updateCounter:function(){
             this.taskAttemptsCounter++;
             this.$(this.counterEl).html(this.taskAttemptsCounter);
+        },
+        //reset counter to 0
+        resetCounter:function(){
+            this.taskAttemptsCounter=0;
+            this.$(this.counterEl).html(this.taskAttemptsCounter);
+        }
+    });
+    ui.ToolbarView=Backbone.View.extend({
+        el:$('#toolbar'),
+        events:{
+            'click #next_round':'startNextRound'
+        },
+        initialize:function(){
+            _.bindAll(this,'startNextRound');
+        },
+        startNextRound:function(){
+            AppController.statisticView.trigger('counter:reset');
+            AppController.cardsView.trigger('cards:clear');
+            AppController.cardsView.trigger('cards:new');
         }
     });
 });
