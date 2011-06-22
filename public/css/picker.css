@@ -30,8 +30,6 @@ img
 	margin:1em auto;
 	width:140px;
 	height:140px;
-	-webkit-perspective:500;
-    perspective:500;
     border:15px solid #fff;
 }
 .card .front,.card .back
@@ -41,7 +39,7 @@ img
 	height:100%;
 	text-align:center;
 	/* important: transitions needed for flip effect! */
-	-webkit-transition: all .5s ease-in-out;
+	-webkit-transition: all .3s ease-in-out;
     -webkit-transform-style:preserve-3d;
     transform-style:preserve-3d;
 	-webkit-backface-visibility:hidden;
@@ -89,12 +87,19 @@ img
 #statistic_view
 {
     position:fixed;
-    top:30px;
+    bottom:30px;
     right:30px;
+    z-index:15;
 }
 header h1
 {
     font-size:16px;
+}
+footer
+{
+    position:fixed;
+    bottom:30px;
+    left:30px;
 }
 .button
 {
