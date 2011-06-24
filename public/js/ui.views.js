@@ -1,4 +1,4 @@
-/*global Backbone: true, $: true, _: true, AppController: true, models:true */
+/*global Backbone: true, $: true, _: true, AppController: true, AppStatistic: true, models:true */
 var ui={};
 $(function(){
     "use strict";
@@ -35,7 +35,7 @@ $(function(){
         thirdColumn:$('#third_column'),
         fourthColumn:$('#fourth_column'),
         initialize:function(){
-            _.bindAll(this,'render','addCard','newCards','removeCards',
+            _.bindAll(this,'addCard','newCards','removeCards',
                 'handleCardSelection');
             this.correctAnswersCounter=0;
             this.bind('card:selected',this.handleCardSelection);
@@ -45,9 +45,6 @@ $(function(){
             this.cards=new models.Cards();
             //retrieve cards immediately to start game
             this.newCards();
-        },
-        render:function(){
-            return this;
         },
         addCard:function(card,index){
             card.set({countId:index});
@@ -106,7 +103,10 @@ $(function(){
     //statistics view. Shows number of made attempt
     ui.StatisticView=Backbone.View.extend({
         el:$('#statistic_view'),
-        counterEl:$('#statistic_view section'),
+        clicksCounterEl:$('#statistic_view #clicks'),
+        totalClicksCounterEl:$('#statistic_view #total_clicks'),
+        gamesCounterEl:$('#statistic_view #games'),
+        avgClicksCounterEl:$('#statistic_view #clicks_per_game'),
         initialize:function(){
             this.taskAttemptsCounter=0;
             _.bind(this,'resetCounter','updateCounter');
@@ -116,12 +116,16 @@ $(function(){
         //increment counter on 1
         updateCounter:function(){
             this.taskAttemptsCounter++;
-            this.$(this.counterEl).html(this.taskAttemptsCounter);
+            AppStatistic.addClick();
+            this.$(this.clicksCounterEl).html(this.taskAttemptsCounter);
+            this.$(this.totalClicksCounterEl).html(AppStatistic.getNumberOfClicks());
         },
         //reset counter to 0
         resetCounter:function(){
             this.taskAttemptsCounter=0;
             this.$(this.counterEl).html(this.taskAttemptsCounter);
+            this.$(this.gamesCounterEl).html(AppStatistic.getNumberOfGames());
+            this.$(this.avgClicksCounterEl).html(AppStatistic.getAvgNumberOfClicks());
         }
     });
     ui.ToolbarView=Backbone.View.extend({
@@ -133,6 +137,7 @@ $(function(){
             _.bindAll(this,'startNextRound');
         },
         startNextRound:function(){
+            AppStatistic.addGame();
             AppController.statisticView.trigger('counter:reset');
             AppController.cardsView.trigger('cards:clear');
             AppController.cardsView.trigger('cards:new');
