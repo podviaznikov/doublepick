@@ -1,6 +1,6 @@
-# photopic
+# picturepick
 
-photopic experimental game developed fir testing CSS3 transitions and animations.
+picturepick experimental game developed for testing CSS3 transitions and animations.
 
 
 ## License
