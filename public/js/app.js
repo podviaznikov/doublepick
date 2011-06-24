@@ -4,7 +4,7 @@ var models={},AppStatistic,
     AppController={
     init:function(){
         this.cardsIds=[];
-        for(var i=1;i<=48;i++){
+        for(var i=1;i<=82;i++){
             this.cardsIds[i]=i;
         }
         //increment number of games
@@ -49,7 +49,7 @@ AppStatistic={
         localStorage.setItem('number_of_clicks',newNumberOfClicks);
     },
     getAvgNumberOfClicks:function(){
-        return this.getNumberOfClicks()/this.getNumberOfGames();
+        return (this.getNumberOfClicks()/this.getNumberOfGames()).toFixed(2);
     }
 };
 //extending libs

@@ -112,6 +112,10 @@ $(function(){
             _.bind(this,'resetCounter','updateCounter');
             this.bind('counter:update',this.updateCounter);
             this.bind('counter:reset',this.resetCounter);
+            //load initial statistic
+            this.$(this.gamesCounterEl).html(AppStatistic.getNumberOfGames());
+            this.$(this.avgClicksCounterEl).html(AppStatistic.getAvgNumberOfClicks());
+            this.$(this.totalClicksCounterEl).html(AppStatistic.getNumberOfClicks());
         },
         //increment counter on 1
         updateCounter:function(){
