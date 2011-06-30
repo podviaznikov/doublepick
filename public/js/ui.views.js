@@ -117,8 +117,8 @@ $(function(){
             this.$(this.avgClicksCounterEl).html(AppStatistic.getAvgNumberOfClicks());
             this.$(this.totalClicksCounterEl).html(AppStatistic.getNumberOfClicks());
         },
-        //increment counter on 1
         updateCounter:function(){
+            //increment counter on 1
             this.taskAttemptsCounter++;
             AppStatistic.addClick();
             this.$(this.clicksCounterEl).html(this.taskAttemptsCounter);

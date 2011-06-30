@@ -21,7 +21,17 @@
 </article>
 <section id="toolbar">
     <button id="next_round" class="button">Next round</button>
+    <a id="enter_name_btn" href="#enter_name"></a>
 </section>
+<aside id="enter_name">
+    <section class="modal_panel">
+        <h1>Hey stranger! What's your name?</h1>
+        <p>We only use it to show who wins more games. Nothing tricky.</p>
+        <input type="text" placeholder="Your name"> 
+        <button id="next_round" class="button">That's me!</button>
+        <small>Rather not? <a href="#">Close this »</a></small>
+    </section>
+</aside>
 <aside id="statistic_view">
     <label>games</label><output id="games">0</output>
     <label>total clicks</label><output id="total_clicks">0</output>
@@ -29,8 +39,7 @@
     <label>clicks</label><output id="clicks">0</output>
 </aside>
 <footer>
-<span>Build by <a href="enginimation.com">Enginimation Studio</a> in 2011</span>
-<img src="http://www.w3.org/html/logo/badge/html5-badge-h-connectivity-css3-graphics-semantics.png" width="229" height="64" alt="HTML5 Powered with Connectivity / Realtime, CSS3 / Styling, Graphics, 3D &amp; Effects, and Semantics" title="HTML5 Powered with Connectivity / Realtime, CSS3 / Styling, Graphics, 3D &amp; Effects, and Semantics">
+    <span>Build by <a href="enginimation.com">Enginimation Studio</a> in 2011</span>
 </footer>
 <script type="html/template" id="card_tpl">
      <div class="front">?</div>
