@@ -4,15 +4,25 @@ var models={},AppStatistic,
     AppController={
     init:function(){
         this.cardsIds=[];
-        for(var i=1;i<=114;i++){
-            this.cardsIds[i]=i;
-        }
-        //increment number of games
-        AppStatistic.addGame();
+        this.initCards();
         //init views
         this.cardsView=new ui.CardsView();
         this.statisticView=new ui.StatisticView();
         this.toolbarView=new ui.ToolbarView();
+        this.loginView=new ui.LoginView();
+    },
+    initCards:function(){
+        for(var i=1;i<=114;i++){
+            this.cardsIds[i]=i;
+        }        
+    },
+    settings:{
+        saveUserName:function(userName){
+            localStorage.setItem('userName',userName);
+        },
+        getUserName:function(){
+            return localStorage.getItem('userName')||'';
+        }
     }
 };
 models.Card=Backbone.Model.extend({});

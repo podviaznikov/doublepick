@@ -91,6 +91,8 @@ $(function(){
                         this.$('.card').addClass('all_finished');
                         //reset correct answer counter(maybe not necessary to reset it in this place)
                         this.correctAnswersCounter=0;
+                        //increase counter for played games. We count just made games
+                        AppStatistic.addGame();
                     }
                 }
             }
@@ -141,10 +143,23 @@ $(function(){
             _.bindAll(this,'startNextRound');
         },
         startNextRound:function(){
-            AppStatistic.addGame();
             AppController.statisticView.trigger('counter:reset');
             AppController.cardsView.trigger('cards:clear');
             AppController.cardsView.trigger('cards:new');
         }
     });
+    ui.LoginView=Backbone.View.extend({
+        el:$('#enter_name'),
+        nameField:$('#enter_name input'),
+        events:{
+            'click #login':'loginUser'
+        },
+        initialize:function(){
+            _.bindAll(this,'loginUser');
+        },
+        loginUser:function(){
+            AppController.settings.saveUserName(this.$(this.nameField).val());
+            window.location.hash='';
+        }
+    })
 });

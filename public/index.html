@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Picker</title>
+    <title>DoublePick</title>
     <meta charset="utf-8" />
     <meta name="author" content="Enginimation Studio (enginimation.com)" />
-    <meta name="description" content="HTML5 browser game. Find the pair for every picture!"/>
-    <meta name="keywords" content="game,html5,css3,transitions,animations,pictures,browser game,pair for picture"/>
+    <meta name="description" content="DoublePick - HTML5 browser game. Find the pair for every picture!"/>
+    <meta name="keywords" content="doublepick,game,html5,css3,transitions,animations,pictures,browser game,pair for picture"/>
     <link rel="stylesheet" href="css/picker.css"/>
     <script src="js/libs.bundle.js"></script>
     <script src="js/ui.views.js"></script>
@@ -19,28 +19,28 @@
     <section id="third_column" class="column"></section>
     <section id="fourth_column" class="column"></section>
 </article>
-<section id="toolbar">
-    <button id="next_round" class="button">Next round</button>
-    <a id="enter_name_btn" href="#enter_name"></a>
-</section>
+<footer>
+    <section id="toolbar" class="mini_panel">
+        <button id="next_round" class="button">Next round</button>
+        <a id="enter_name_btn" href="#enter_name"></a>
+    </section>
+    <span class="mini_panel">Build by <a href="enginimation.com">Enginimation Studio</a> in 2011</span>
+    <aside id="statistic_view" class="mini_panel">
+        <label>games</label><output id="games">0</output>
+        <label>total clicks</label><output id="total_clicks">0</output>
+        <label>clicks per game</label><output id="clicks_per_game">0</output>
+        <label>clicks</label><output id="clicks">0</output>
+    </aside>
+</footer>
 <aside id="enter_name">
     <section class="modal_panel">
         <h1>Hey stranger! What's your name?</h1>
         <p>We only use it to show who wins more games. Nothing tricky.</p>
         <input type="text" placeholder="Your name"> 
-        <button id="next_round" class="button">That's me!</button>
+        <button id="login" class="button">That's me!</button>
         <small>Rather not? <a href="#">Close this »</a></small>
     </section>
 </aside>
-<aside id="statistic_view">
-    <label>games</label><output id="games">0</output>
-    <label>total clicks</label><output id="total_clicks">0</output>
-    <label>clicks per game</label><output id="clicks_per_game">0</output>
-    <label>clicks</label><output id="clicks">0</output>
-</aside>
-<footer>
-    <span>Build by <a href="enginimation.com">Enginimation Studio</a> in 2011</span>
-</footer>
 <script type="html/template" id="card_tpl">
      <div class="front">?</div>
      <div class="back"><img src="<%= image %>"></div>
