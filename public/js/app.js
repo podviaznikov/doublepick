@@ -4,7 +4,7 @@ var models={},AppStatistic,
     AppController={
     init:function(){
         this.cardsIds=[];
-        for(var i=1;i<=82;i++){
+        for(var i=1;i<=114;i++){
             this.cardsIds[i]=i;
         }
         //increment number of games

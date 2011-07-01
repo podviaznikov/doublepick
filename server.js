@@ -4,7 +4,7 @@ var util=require('util'),
     app=express.createServer();
 //configuration
 app.configure(function(){
-    app.use(connect.favicon(__dirname + '/public/16.png'));
+    //app.use(connect.favicon(__dirname + '/public/16.png'));
     //logger
     app.use(express.logger());
     //component for decoding requests' params
