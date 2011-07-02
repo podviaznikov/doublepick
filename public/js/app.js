@@ -51,7 +51,7 @@ AppStatistic={
         localStorage.setItem('number_of_games',newNumberOfGames);
     },
     getNumberOfClicks:function(){
-        var value=localStorage.getItem('number_of_clicks')||0;    
+        var value=localStorage.getItem('number_of_clicks')||'0';    
         return parseInt(value,10); 
     },
     addClick:function(){
@@ -59,7 +59,8 @@ AppStatistic={
         localStorage.setItem('number_of_clicks',newNumberOfClicks);
     },
     getAvgNumberOfClicks:function(){
-        return (this.getNumberOfClicks()/this.getNumberOfGames()).toFixed(2);
+        var numberOfClicks=this.getNumberOfClicks();
+        return numberOfClicks===0?0:(numberOfClicks/this.getNumberOfGames()).toFixed(2);
     }
 };
 //extending libs

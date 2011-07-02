@@ -125,13 +125,13 @@ $(function(){
             AppStatistic.addClick();
             this.$(this.clicksCounterEl).html(this.taskAttemptsCounter);
             this.$(this.totalClicksCounterEl).html(AppStatistic.getNumberOfClicks());
+            this.$(this.gamesCounterEl).html(AppStatistic.getNumberOfGames());
+            this.$(this.avgClicksCounterEl).html(AppStatistic.getAvgNumberOfClicks());
         },
         //reset counter to 0
         resetCounter:function(){
             this.taskAttemptsCounter=0;
             this.$(this.counterEl).html(this.taskAttemptsCounter);
-            this.$(this.gamesCounterEl).html(AppStatistic.getNumberOfGames());
-            this.$(this.avgClicksCounterEl).html(AppStatistic.getAvgNumberOfClicks());
         }
     });
     ui.ToolbarView=Backbone.View.extend({
@@ -156,6 +156,7 @@ $(function(){
         },
         initialize:function(){
             _.bindAll(this,'loginUser');
+            this.$(this.nameField).val(AppController.settings.getUserName());
         },
         loginUser:function(){
             AppController.settings.saveUserName(this.$(this.nameField).val());
