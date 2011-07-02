@@ -19,7 +19,6 @@ body
 }
 #app_footer
 {
-    text-align: center;
     position:fixed;
     bottom:0;
     margin-bottom:10px;
@@ -224,9 +223,8 @@ input[type='text']:focus
 #statistic_view
 {
     z-index:15;
-    position: absolute;
-    right: 20px; 
-    bottom: 0;
+    float: right;
+    margin-right: 20px;
 }
 #statistic_view label:after
 {

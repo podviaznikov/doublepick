@@ -92,7 +92,11 @@ $(function(){
                         //reset correct answer counter(maybe not necessary to reset it in this place)
                         this.correctAnswersCounter=0;
                         //increase counter for played games. We count just made games
-                        AppStatistic.addGame();
+                        AppController.statisticView.trigger('counter:game');
+                        
+                        AppController.statisticView.trigger('counter:reset');
+                        AppController.cardsView.trigger('cards:clear');
+                        AppController.cardsView.trigger('cards:new');
                     }
                 }
             }
@@ -114,10 +118,16 @@ $(function(){
             _.bind(this,'resetCounter','updateCounter');
             this.bind('counter:update',this.updateCounter);
             this.bind('counter:reset',this.resetCounter);
+            this.bind('counter:game',this.updateGameCounter);
             //load initial statistic
             this.$(this.gamesCounterEl).html(AppStatistic.getNumberOfGames());
             this.$(this.avgClicksCounterEl).html(AppStatistic.getAvgNumberOfClicks());
             this.$(this.totalClicksCounterEl).html(AppStatistic.getNumberOfClicks());
+        },
+        updateGameCounter:function(){
+            AppStatistic.addGame();
+            this.$(this.gamesCounterEl).html(AppStatistic.getNumberOfGames());
+            this.$(this.avgClicksCounterEl).html(AppStatistic.getAvgNumberOfClicks());            
         },
         updateCounter:function(){
             //increment counter on 1
@@ -125,27 +135,11 @@ $(function(){
             AppStatistic.addClick();
             this.$(this.clicksCounterEl).html(this.taskAttemptsCounter);
             this.$(this.totalClicksCounterEl).html(AppStatistic.getNumberOfClicks());
-            this.$(this.gamesCounterEl).html(AppStatistic.getNumberOfGames());
-            this.$(this.avgClicksCounterEl).html(AppStatistic.getAvgNumberOfClicks());
         },
         //reset counter to 0
         resetCounter:function(){
             this.taskAttemptsCounter=0;
             this.$(this.counterEl).html(this.taskAttemptsCounter);
-        }
-    });
-    ui.ToolbarView=Backbone.View.extend({
-        el:$('#toolbar'),
-        events:{
-            'click #next_round':'startNextRound'
-        },
-        initialize:function(){
-            _.bindAll(this,'startNextRound');
-        },
-        startNextRound:function(){
-            AppController.statisticView.trigger('counter:reset');
-            AppController.cardsView.trigger('cards:clear');
-            AppController.cardsView.trigger('cards:new');
         }
     });
     ui.LoginView=Backbone.View.extend({

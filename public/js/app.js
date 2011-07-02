@@ -12,7 +12,7 @@ var models={},AppStatistic,
         this.loginView=new ui.LoginView();
     },
     initCards:function(){
-        for(var i=1;i<=114;i++){
+        for(var i=1;i<=147;i++){
             this.cardsIds[i]=i;
         }        
     },
