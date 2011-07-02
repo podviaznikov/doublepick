@@ -16,6 +16,13 @@ var models={},AppStatistic,
             this.cardsIds[i]=i;
         }        
     },
+    nextGame:function(){
+        //increase counter for played games. We count just made games
+        AppController.statisticView.trigger('counter:game');
+        
+        AppController.cardsView.trigger('cards:clear');
+        AppController.cardsView.trigger('cards:new');
+    },
     settings:{
         saveUserName:function(userName){
             localStorage.setItem('userName',userName);
