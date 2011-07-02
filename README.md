@@ -7,7 +7,8 @@ picturepick experimental game developed for testing CSS3 transitions and animati
 We use a lot of icons for this game. If you want to use that icons in your projetc
 please clarify license with authors before.
 
-eico_1_year-http://rokey.deviantart.com/art/eico-1-year-25294190
+eico_1_year - http://rokey.deviantart.com/art/eico-1-year-25294190
+256x256-Business-Icons - http://www.tutorial9.net/downloads/icon-pack-256x256-business-icons/
 
 ## License
 
