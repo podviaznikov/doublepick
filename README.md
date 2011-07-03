@@ -1,6 +1,6 @@
-# picturepick
+# doublepick
 
-picturepick experimental game developed for testing CSS3 transitions and animations.
+doublepick experimental game developed for testing CSS3 transitions and animations.
 
 ## credits
 
