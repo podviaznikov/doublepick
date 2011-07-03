@@ -16,6 +16,7 @@ body
     color:#777;
     -webkit-user-select:none;
     user-select:none;
+    font-family: Arial,sans-serif;
 }
 #app_footer
 {
@@ -203,6 +204,10 @@ input[type='text']:focus
     width: 142px;
     margin: 10px 9px 6px 0;
 }
+.modal_panel footer
+{
+    margin-top: 10px;
+}
 .modal_panel small
 {
     float:right;
@@ -215,10 +220,6 @@ input[type='text']:focus
 .mini_panel a:after,.mini_panel a:before
 {
     content:' | ';
-}
-.mini_panel footer
-{
-    margin-top: 10px;
 }
 #statistic_view
 {

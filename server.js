@@ -17,7 +17,6 @@ app.configure(function(){
     //public folder for static files
     app.use(express.static(__dirname+'/public'));
 });
-
-
-app.listen(process.env.C9_PORT);
+app.listen(8088);
+//app.listen(process.env.C9_PORT);
 util.log('started app');
