@@ -8,7 +8,6 @@ var models={},AppStatistic,
         //init views
         this.cardsView=new ui.CardsView();
         this.statisticView=new ui.StatisticView();
-        this.toolbarView=new ui.ToolbarView();
         this.loginView=new ui.LoginView();
     },
     initCards:function(){
