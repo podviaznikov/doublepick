@@ -32,4 +32,4 @@ app.configure(function(){
     //public folder for static files
     app.use(express.static(__dirname+'/public'));
 });
-app.listen(8088);
+exports.app=app;
